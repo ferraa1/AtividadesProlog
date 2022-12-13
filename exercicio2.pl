@@ -1,0 +1,60 @@
+%Questão 2 Fatos:
+cidade(são_mateus,pequena).
+cidade(vitória,média).
+cidade(são_paulo,grande).
+cidade(maceió,média).
+cidade(campos,pequena).
+cidade(cariacica,pequena).
+cidade(colatina,pequena).
+capital(vitória).
+capital(maceió).
+capital(sãopaulo).
+
+estado(es,sudeste).
+estado(al,nordeste).
+estado(sp,sudeste).
+
+pertence(são_mateus,es).
+pertence(vitória,es).
+pertence(santos,sp).
+pertence(maceió,al).
+pertence(colatina,es).
+pertence(cariacica,es).
+%Questão 2 Respostas:
+%a)capital(X),pertence(X,rs).
+%b)estado(X,nordeste).
+%c)cidade(X,pequena);cidade(X,média).
+%d)pertence(X,Y),estado(Y,sudeste).
+%Questão 2 Regras:
+%e)
+cidade_pequena(X):-
+    cidade(X,pequena).
+%f)
+cidade_na_região_norte(X):-
+    pertence(X,Y),
+    estado(Y,norte).
+%g)
+capital_região_sul(X):-
+    capital(X),
+    pertence(X,Y),
+    estado(Y,sul).
+%h)
+cidade_pequena_região_sudeste(X):-
+    cidade(X,pequena),
+    pertence(X,Y),
+    estado(Y,sudeste).
+%i)
+estado_com_capital_grande(X):-
+    pertence(Y,X),
+    capital(Y),
+    cidade(Y,grande).
+%j)
+estado_região_nordeste_com_capital_média(X):-
+    estado(X,nordeste),
+    pertence(Y,X),
+    capital(Y),
+    cidade(Y,média).
+%k)
+cidade_pequena_do_estado(X,Y):-
+    cidade(X,pequena),
+    pertence(X,Y).

@@ -1,0 +1,31 @@
+%Questão 5 Fatos:
+partida(tp123,são_paulo,1430,1430).
+partida(n1234,curitiba,1525,1600).
+partida(tp876,porto_alegre,1418,1430).
+partida(n1498,rio_de_janeiro,1500,1500).
+chegada(tp123,são_paulo,1400,1435).
+chegada(n1533,campinas,1500,1500).
+chegada(tp877,porto_alegre,1430,1500).
+chegada(n1498,rio_de_janeiro,1600,1550).
+%Questão 5 Regras:
+%a)
+parteAHoras(X):-
+    partida(X,_,Z,Z).
+%b)
+vaivem(X):-
+    partida(X,Y,_,_),
+    chegada(X,Y,_,_).
+%c)
+ligacao(X,Y):-
+    chegada(Z,X,_,_),
+    partida(Z,Y,_,_),
+    X\=Y.
+%d)
+chegaAtrasado(X):-
+    chegada(X,_,Y,Z),
+    Z>Y.
+%e)
+emConflito(X):-
+    partida(X,_,_,Y),
+    chegada(X,_,_,Z),
+    Y<Z.

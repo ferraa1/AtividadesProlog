@@ -1,0 +1,59 @@
+%Questão 3 Fatos:
+come(urso,peixe).
+come(peixe,peixinho).
+come(peixinho,alga).
+come(peixe,alga).
+come(urso,raposa).
+come(veado,grama).
+come(peixe,minhoca).
+come(urso,guaxinim).
+come(raposa,coelho).
+come(urso,veado).
+come(lince,veado).
+come(planta_carnívora,mosca).
+come(veado,planta_carnívora).
+animal(urso).
+animal(peixe).
+animal(raposa).
+animal(veado).
+animal(minhoca).
+animal(lince).
+animal(coelho).
+animal(guaxinim).
+animal(mosca).
+animal(peixinho).
+planta(grama).
+planta(alga).
+planta(planta_carnívora).
+%Questão 3 Regras:
+%a)
+carnívoro(X):-
+    come(X,Y),
+    animal(Y).
+%b)
+herbívoro(X):-
+    (come(X,Y),planta(Y)),
+    not((come(X,Z),animal(Z))),
+    X\=Y.
+%c)
+predador(X):-
+    carnívoro(X),
+    animal(X).
+%d)
+presa(X):-
+    come(Y,X),
+    predador(Y),
+    animal(X).
+%e)
+caçado(X):-
+    presa(X).
+%f)
+onívoro(X):-
+    (come(X,Y),planta(Y)),
+    (come(X,Z),animal(Z)).
+%g)
+pertence_cadeia_alimentar(X,Y):-
+    come(X,Y).
+pertence_cadeia_alimentar(X,Y):-
+    come(X,Z),
+    pertence_cadeia_alimentar(Z,Y).
